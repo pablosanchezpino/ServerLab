@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <strong>
+                        Bienvenido <span class="text-capitalize">{{ Auth::user()->name }}</span>: 
+                    </strong>
+                    <div>Crea algo Sorprendente!</div>
+                    
                 </div>
             </div>
         </div>
