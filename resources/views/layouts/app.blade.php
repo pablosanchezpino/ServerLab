@@ -21,39 +21,49 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-default" role="navigation">
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                </div>
-        
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="{{ route('arduino.getLed') }}">LED Arduino</a></li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto">
                         @if(auth()->check())
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('arduino.getLed') }}">LED Arduino</a>
+                            </li>
+                        @endif
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">
+                                    <i class="fas fa-sign-in-alt"></i> {{ __('Ingresar') }}
+                                </a>
+                            </li>
+                            {{-- <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a></li> --}}
+                        @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <i class="fas fa-user-circle"></i> 
+                                    <span class="text-capitalize">
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </span>
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        Cerrar Sesi&oacute;n
+                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesi&oacute;n
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -61,22 +71,16 @@
                                     </form>
                                 </div>
                             </li>
-                        @endif
-                        @if(auth()->guest())
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a></li>
-                            {{-- <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li> --}}
-                        @endif
+                        @endguest
                     </ul>
-                </div><!-- /.navbar-collapse -->
+                </div>
             </div>
         </nav>
-    </header>
 
-<main class="py-4">
-    @yield('content')
-</main>
-    
-</div>
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
 
 </body>
 
