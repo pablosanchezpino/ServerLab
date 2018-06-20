@@ -35,9 +35,15 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @if(auth()->check())
+                            
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('arduino.getLed') }}">LED Arduino</a>
                             </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('arduino.moveTo') }}">MOVE Arduino</a>
+                            </li>
+                            
                         @endif
                     </ul>
 
@@ -50,7 +56,7 @@
                                     <i class="fas fa-sign-in-alt"></i> {{ __('Ingresar') }}
                                 </a>
                             </li>
-                            {{-- <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a></li> --}}
+                            <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a></li>
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

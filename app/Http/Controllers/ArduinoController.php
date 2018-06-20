@@ -17,13 +17,6 @@ class ArduinoController extends Controller
         $this->middleware('auth');
     }
 
-	public function getLed()
-	{
-
-		return view('arduino.led');
-
-	}
-
 	public function ledOn()
 	{
 
@@ -49,6 +42,44 @@ class ArduinoController extends Controller
 		fclose($fh);
 
 		return redirect()->route('arduino.getLed')->with('ledOFF','Led Apagado');
+
+	}
+
+	public function moveTo($dir)
+	{
+
+		$fileLocation  = "Arduino/MoveTo.txt";
+		$fh 		   = fopen($fileLocation, 'w') or die ("ERROR");
+		$stringToWrite = $dir;
+		
+		fwrite($fh, $stringToWrite);
+		fclose($fh);
+
+		$pos = [
+			'W',
+			'A',
+			'S',
+			'D',
+			'X'
+		];
+
+		$move = [
+			'movido hacia Adelante',
+			'movido hacia la Izquierda',
+			'movido hacia Atrás',
+			'movido hacia la Derecha',
+			'detenido'
+		];
+
+		$i=0;
+		foreach ($pos as $p) {
+		    if($p == $dir){
+		    	$where = $move[$i]; 
+		    }
+	    	$i++;
+		};
+
+		return redirect()->route('arduino.moveTo')->with('move','Tu Robot se ha '.$where);
 
 	}
 

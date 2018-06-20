@@ -10417,3 +10417,12 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 1px 0px 1px 2px;
+  font-size: 19px;
+  line-height: 0;
+  border-radius: 15px;
+}

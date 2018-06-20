@@ -25,4 +25,18 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function getLed()
+    {
+
+        return view('arduino.led');
+
+    }
+
+    public function getMove()
+    {
+
+        return view('arduino.moveTo');
+
+    }   
 }

@@ -19,8 +19,8 @@ Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
-// Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-// Route::post('register', 'Auth\RegisterController@register');
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
@@ -31,7 +31,9 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 // Ruta Home
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('led', 'ArduinoController@getLed')->name('arduino.getLed');
+Route::get('led', 'HomeController@getLed')->name('arduino.getLed');
 Route::get('led/ON', 'ArduinoController@ledOn')->name('arduino.ledOn');
 Route::get('led/OFF', 'ArduinoController@ledOff')->name('arduino.ledOff');
 
+Route::get('moveTo', ['as' => 'arduino.moveTo', 'uses' => 'HomeController@getMove']);
+Route::get('moveTo/{dir}', ['as' => 'arduino.moveNowTo', 'uses' => 'ArduinoController@moveTo']);
