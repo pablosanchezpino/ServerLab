@@ -15,9 +15,9 @@
                     @endif
 
                     <strong>
-                        Bienvenido <span class="text-capitalize">{{ Auth::user()->name }}</span>: 
+                        Bienvenido a ServerLab <span class="text-capitalize">{{ Auth::user()->name }}</span>: 
                     </strong>
-                    <div>Crea algo Sorprendente!</div>
+                    <div>Robotica Educativa te permitira aprender y crear algo sorprendente !</div>
                     
                 </div>
             </div>

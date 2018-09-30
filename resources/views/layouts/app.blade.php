@@ -41,9 +41,11 @@
                             </li>
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('arduino.moveTo') }}">MOVE Arduino</a>
+                                <a class="nav-link" href="{{ route('arduino.moveTo') }}">MARK-1 Arduino</a>
                             </li>
-                            
+
+
+
                         @endif
                     </ul>
 

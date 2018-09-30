@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
+//use Illuminate\Http\Request;
 
 class ArduinoController extends Controller
 {
@@ -50,9 +51,13 @@ class ArduinoController extends Controller
 
 		$fileLocation  = "Arduino/MoveTo.txt";
 		$fh 		   = fopen($fileLocation, 'w') or die ("ERROR");
-		$stringToWrite = $dir;
-		
-		fwrite($fh, $stringToWrite);
+		if($dir=="X"){
+			$stringToWrite = $dir." 1";
+			fwrite($fh, $stringToWrite);
+		}else{
+			$stringToWrite = Request::input("program");
+			fwrite($fh, $stringToWrite."\nX 1 _ _ _");
+		}
 		fclose($fh);
 
 		$pos = [
@@ -79,7 +84,7 @@ class ArduinoController extends Controller
 	    	$i++;
 		};
 
-		return redirect()->route('arduino.moveTo')->with('move','Tu Robot se ha '.$where);
+		return redirect()->route('arduino.moveTo')->with('move','Mark-1 secuencia ingresada');//.$where);
 
 	}
 

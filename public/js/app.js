@@ -47385,3 +47385,60 @@ if (false) {
 
 /***/ })
 /******/ ]);
+$("#compara-ocultar-up").hide();
+$("#compara-ocultar-dw").hide();
+$("#compara-ocultar-lf").hide();
+$("#compara-ocultar-rg").hide();
+
+  $("#compara-up").click(function() {
+    if($("#compara-up").val()==0){
+      $("#compara-up").val(1);
+      $("#compara-ocultar-up").show();
+    }else{
+      $("#compara-up").val(0);
+      $("#comparador-up").val("_"); 
+      $("#limite-up").val("_");
+      $("#salto-up").val("_");
+      $("#compara-ocultar-up").hide();
+
+    }
+  }); 
+
+  $("#compara-dw").click(function() {
+    if($("#compara-dw").val()==0){
+      $("#compara-dw").val(1);
+      $("#compara-ocultar-dw").show();
+    }else{
+      $("#compara-dw").val(0);
+      $("#comparador-dw").val("_"); 
+      $("#limite-dw").val("_");
+      $("#salto-dw").val("_");
+      $("#compara-ocultar-dw").hide();
+    }
+  });
+
+  $("#compara-lf").click(function() {
+    if($("#compara-lf").val()==0){
+      $("#compara-lf").val(1);
+      $("#compara-ocultar-lf").show();
+    }else{
+      $("#compara-lf").val(0);
+      $("#comparador-lf").val("_"); 
+      $("#limite-lf").val("_");
+      $("#salto-lf").val("_");
+      $("#compara-ocultar-lf").hide();
+    }
+  });
+
+  $("#compara-rg").click(function() {
+    if($("#compara-rg").val()==0){
+      $("#compara-rg").val(1);
+      $("#compara-ocultar-rg").show();
+    }else{
+      $("#compara-rg").val(0);
+        $("#comparador-rg").val("_"); 
+      $("#limite-rg").val("_");
+      $("#salto-rg").val("_");
+      $("#compara-ocultar-rg").hide();
+    }
+  });
