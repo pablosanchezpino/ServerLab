@@ -10426,3 +10426,19 @@ a.text-dark:focus {
   line-height: 0;
   border-radius: 15px;
 }
+
+.horizontal{
+	display:inline-block;
+}
+
+
+.esconder{
+	display:none;
+}
+
+
+.flecha{
+	height:30px;
+	margin-bottom: 5px;
+	
+}

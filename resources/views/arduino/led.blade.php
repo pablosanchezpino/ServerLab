@@ -1,10 +1,7 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
-    
 	<h1>FUNCIONALIDADES ARDUINO</h1>
-
 	@if(session('ledON'))
 		<div class="alert alert-margin alert-dismissible alert-warning text-center margin-top-30 margin-bottom-40">
 			<button class="close" data-close="alert" data-dismiss="alert" aria-label="close">&times;</button>

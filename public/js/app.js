@@ -47389,6 +47389,9 @@ $("#compara-ocultar-up").hide();
 $("#compara-ocultar-dw").hide();
 $("#compara-ocultar-lf").hide();
 $("#compara-ocultar-rg").hide();
+$("#compara-ocultar").hide();
+
+idgrupo=0;
 
   $("#compara-up").click(function() {
     if($("#compara-up").val()==0){
@@ -47442,3 +47445,233 @@ $("#compara-ocultar-rg").hide();
       $("#compara-ocultar-rg").hide();
     }
   });
+
+  $("#compara").click(function() {
+    if($("#compara").val()==0){
+      $("#compara").val(1);
+      $("#compara-ocultar").show();
+    }else{
+      $("#compara").val(0);
+        $("#comparador").val("_"); 
+      $("#limite").val("_");
+      $("#salto").val("_");
+      $("#compara-ocultar").hide();
+    }
+  });
+
+
+  $("#for-grupo").click(function() {
+      if($("#for-grupo").val()==0){
+		var template = $('#flecha-clone');
+		var clone=template.clone().removeClass('esconder').addClass('horizontal').removeAttr('id').insertBefore(template);
+		var secuencia =clone.find("#secuencia");
+		secuencia.remove();
+		clone.hover(function(){
+			imagen.attr("src","parentesis-lf-borrar.png");	
+		}, function(){
+			imagen.attr("src","parentesis-lf.png");	
+		});
+		var delay=clone.find("#delay");
+		delay.remove();
+		var imagen=clone.find("#imagen");
+		imagen.attr("src","parentesis-lf.png");
+		clone.click(function(){
+			clone.remove();
+		});		
+        $("#for-grupo").val(1);
+        $("#for-grupo").html('CERRAR FOR');
+      }else{
+        $("#for-grupo").val(0);
+		var template = $('#flecha-clone');
+		var clone=template.clone().removeClass('esconder').addClass('horizontal').removeAttr('id').insertBefore(template);
+		var clone2=clone.find("#delay").addClass('horizontal');
+		var delay=clone.find("#delay");
+		delay.html(" <b> X "+ $("#ciclos").val() +    "</b>");
+		var secuencia =clone.find("#secuencia");
+		secuencia.remove();
+		clone.hover(function(){
+			imagen.attr("src","parentesis-rg-borrar.png");	
+		}, function(){
+			imagen.attr("src","parentesis-rg.png");	
+		});
+		var imagen=clone.find("#imagen");
+		imagen.attr("src","parentesis-lf.png");
+		clone.click(function(){
+			clone.remove();
+		});	
+		var imagen=clone.find("#imagen");
+		imagen.attr("src","parentesis-rg.png");	
+        $("#grupo").val( parseInt($("#grupo").val())+1);
+        $("#for-grupo").html('INICIAR FOR');
+		clone.click(function(){
+			clone.remove();
+		});
+      }
+
+
+  });
+
+  $("#arriba").click(function() {
+		var template = $('#flecha-clone');
+		var comparador="";
+		var clone=template.clone().removeClass('esconder').addClass('horizontal').removeAttr('id').insertBefore(template);
+		var clone2=clone.find("#delay").addClass('horizontal');
+		var imagen=clone.find("#imagen");
+		imagen.attr("src","up.png");
+		var secuencia =clone.find("#secuencia");
+		secuencia.val("W "+$("#delay-up").val()+" "+$("#comparador").val()+" "+$("#limite").val()+" "+$("#salto").val()+" "+$("#grupo").val()+" "+$("#ciclos").val());
+		var secTiem=clone.find("#secTiem");
+		var delay=clone.find("#delay");
+		if($("#comparador").val()!="_"){
+			comparador="<b>  if("+$("#delay-up").val()+" "+$("#comparador").val()+" "+$("#limite").val()+") salto = "+$("#salto").val()+"</b>";
+		}
+		clone.hover(function(){
+			imagen.attr("src","up-borrar.png");	
+		}, function(){
+			imagen.attr("src","up.png");	
+		});
+		delay.html("<b>"+$("#delay-up").val()+"  </b>"+comparador);
+		clone.click(function(){
+			clone.remove();
+		});
+		
+
+		
+    //$("#program").val($("#program").val()+"W "+$("#delay-up").val()+" "+$("#comparador-up").val()+" "+$("#limite-up").val()+" "+$("#salto-up").val()+" "+$("#grupo").val()+" "+$("#ciclos").val()+"\n");
+    if($("#for-grupo").val()==0){
+      $("#grupo").val( parseInt($("#grupo").val())+1);
+    }
+
+  });
+
+
+
+  $("#abajo").click(function() {
+		var template = $('#flecha-clone');
+		var comparador="";
+		var clone=template.clone().removeClass('esconder').addClass('horizontal').removeAttr('id').insertBefore(template);
+		var clone2=clone.find("#delay").addClass('horizontal');
+		var imagen=clone.find("#imagen");
+		imagen.attr("src","down.png");
+		var secuencia =clone.find("#secuencia");
+		secuencia.val("S "+$("#delay-dw").val()+" "+$("#comparador").val()+" "+$("#limite").val()+" "+$("#salto").val()+" "+$("#grupo").val()+" "+$("#ciclos").val());
+		var secTiem=clone.find("#secTiem");
+		var delay=clone.find("#delay");
+		if($("#comparador").val()!="_"){
+      comparador="<b>  if("+$("#delay-dw").val()+" "+$("#comparador").val()+" "+$("#limite").val()+") salto = "+$("#salto").val()+"</b>";
+		}
+		clone.hover(function(){
+			imagen.attr("src","down-borrar.png");	
+		}, function(){
+			imagen.attr("src","down.png");	
+		});
+		delay.html("<b>"+$("#delay-dw").val()+"</b>    "+comparador);
+		clone.click(function(){
+			clone.remove();
+		});
+    //$("#program").val($("#program").val()+"S "+$("#delay-dw").val()+" "+$("#comparador-dw").val()+" "+$("#limite-dw").val()+" "+$("#salto-dw").val()+" "+$("#grupo").val()+" "+$("#ciclos").val()+"\n");
+
+    if($("#for-grupo").val()==0){
+      $("#grupo").val( parseInt($("#grupo").val())+1);
+    }
+  });
+
+  $("#izquierda").click(function() {
+		var template = $('#flecha-clone');
+		var comparador="";
+		var clone=template.clone().removeClass('esconder').addClass('horizontal').removeAttr('id').insertBefore(template);
+		var clone2=clone.find("#delay").addClass('horizontal');
+		var imagen=clone.find("#imagen");
+		imagen.attr("src","left.png");
+		var secuencia =clone.find("#secuencia");
+		secuencia.val("A "+$("#delay-lf").val()+" "+$("#comparador").val()+" "+$("#limite").val()+" "+$("#salto").val()+" "+$("#grupo").val()+" "+$("#ciclos").val());
+		var delay=clone.find("#delay");
+		if($("#comparador").val()!="_"){
+      comparador="<b>  if("+$("#delay-lf").val()+" "+$("#comparador").val()+" "+$("#limite").val()+") salto = "+$("#salto").val()+"</b>";
+		}
+		clone.hover(function(){
+			imagen.attr("src","left-borrar.png");	
+		}, function(){
+			imagen.attr("src","left.png");	
+		});		
+		delay.html("<b>"+$("#delay-lf").val()+"</b> &nbsp;"+comparador);
+		clone.click(function(){
+			clone.remove();
+		});
+  //$("#program").val($("#program").val()+"A "+$("#delay-lf").val()+" "+$("#comparador-lf").val()+" "+$("#limite-lf").val()+" "+$("#salto-lf").val()+" "+$("#grupo").val()+" "+$("#ciclos").val()+"\n");
+    if($("#for-grupo").val()==0){
+      $("#grupo").val( parseInt($("#grupo").val())+1);
+    }
+
+  });
+
+  $("#derecha").click(function() {
+		var template = $('#flecha-clone');
+		var comparador="";
+		var clone=template.clone().removeClass('esconder').addClass('horizontal').removeAttr('id').insertBefore(template);
+		var clone2=clone.find("#delay").addClass('horizontal');
+		var imagen=clone.find("#imagen");
+		imagen.attr("src","right.png");
+		var secuencia =clone.find("#secuencia");
+		secuencia.val("D "+$("#delay-rg").val()+" "+$("#comparador").val()+" "+$("#limite").val()+" "+$("#salto").val()+" "+$("#grupo").val()+" "+$("#ciclos").val());
+		var delay=clone.find("#delay");
+		
+		if($("#comparador").val()!="_"){
+      comparador="<b>  if("+$("#delay-rg").val()+" "+$("#comparador").val()+" "+$("#limite").val()+") salto = "+$("#salto").val()+"</b>";
+		}
+		clone.hover(function(){
+			imagen.attr("src","right-borrar.png");	
+		}, function(){
+			imagen.attr("src","right.png");	
+		});
+		delay.html("<b>"+$("#delay-rg").val()+"</b>   "+comparador);
+		clone.click(function(){
+			clone.remove();
+		});
+    //$("#program").val($("#program").val()+"D "+$("#delay-rg").val()+" "+$("#comparador-rg").val()+" "+$("#limite-rg").val()+" "+$("#salto-rg").val()+" "+$("#grupo").val()+" "+$("#ciclos").val()+"\n");
+    if($("#for-grupo").val()==0){
+      $("#grupo").val( parseInt($("#grupo").val())+1);
+    }
+
+  });
+
+
+  
+  
+  
+/*
+  $("#arriba").click(function() {
+    $("#program").val($("#program").val()+"W "+$("#delay-up").val()+" "+$("#comparador-up").val()+" "+$("#limite-up").val()+" "+$("#salto-up").val()+" "+$("#grupo").val()+" "+$("#ciclos").val()+"\n");
+    if($("#for-grupo").val()==0){
+      $("#grupo").val( parseInt($("#grupo").val())+1);
+    }
+
+  });
+
+
+
+  $("#abajo").click(function() {
+    $("#program").val($("#program").val()+"S "+$("#delay-dw").val()+" "+$("#comparador-dw").val()+" "+$("#limite-dw").val()+" "+$("#salto-dw").val()+" "+$("#grupo").val()+" "+$("#ciclos").val()+"\n");
+
+    if($("#for-grupo").val()==0){
+      $("#grupo").val( parseInt($("#grupo").val())+1);
+    }
+  });
+
+  $("#izquierda").click(function() {
+    $("#program").val($("#program").val()+"A "+$("#delay-lf").val()+" "+$("#comparador-lf").val()+" "+$("#limite-lf").val()+" "+$("#salto-lf").val()+" "+$("#grupo").val()+" "+$("#ciclos").val()+"\n");
+    if($("#for-grupo").val()==0){
+      $("#grupo").val( parseInt($("#grupo").val())+1);
+    }
+
+  });
+
+  $("#derecha").click(function() {
+    $("#program").val($("#program").val()+"D "+$("#delay-rg").val()+" "+$("#comparador-rg").val()+" "+$("#limite-rg").val()+" "+$("#salto-rg").val()+" "+$("#grupo").val()+" "+$("#ciclos").val()+"\n");
+    if($("#for-grupo").val()==0){
+      $("#grupo").val( parseInt($("#grupo").val())+1);
+    }
+
+  });
+
+*/

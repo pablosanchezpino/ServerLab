@@ -7,7 +7,7 @@ use Request;
 
 class ArduinoController extends Controller
 {
-	
+
     /**
      * Create a new controller instance.
      *
@@ -38,7 +38,7 @@ class ArduinoController extends Controller
 		$fileLocation  = "Arduino/LEDstate.txt";
 		$fh 		   = fopen($fileLocation, 'w') or die ("ERROR");
 		$stringToWrite = "0";
-		
+
 		fwrite($fh, $stringToWrite);
 		fclose($fh);
 
@@ -49,14 +49,14 @@ class ArduinoController extends Controller
 	public function moveTo($dir)
 	{
 
-		$fileLocation  = "Arduino/MoveTo.txt";
+		$fileLocation  = "Arduino/moveTo.txt";
 		$fh 		   = fopen($fileLocation, 'w') or die ("ERROR");
 		if($dir=="X"){
 			$stringToWrite = $dir." 1";
 			fwrite($fh, $stringToWrite);
 		}else{
-			$stringToWrite = Request::input("program");
-			fwrite($fh, $stringToWrite."\nX 1 _ _ _");
+			$stringToWrite= implode("\n",Request::input("secuencia"));
+			fwrite($fh, $stringToWrite."\nX 1 _ _ _ 0 1");
 		}
 		fclose($fh);
 
@@ -79,7 +79,7 @@ class ArduinoController extends Controller
 		$i=0;
 		foreach ($pos as $p) {
 		    if($p == $dir){
-		    	$where = $move[$i]; 
+		    	$where = $move[$i];
 		    }
 	    	$i++;
 		};
