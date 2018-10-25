@@ -14,7 +14,7 @@
         @foreach ($robots as $robot)
         <div class="col-sm-12 col-md-4">
             <div class="card mt-2 mb-2">
-                <img class="card-img-top" src="img/mbot.jpg" alt="Card image cap">
+                <img class="img-logo-user" src="img/mbot.jpg" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">Nombre: {{$robot->name}}</h5>
                 <p>Número de serie: {{$robot->nro_serie}}</p>
